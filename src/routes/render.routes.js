@@ -82,17 +82,6 @@ router.get("/dashboard/jurado", function (req, res) {
   });
 });
 
-router.get("/dashboard/jurado/evaluar_equipo", function (req, res) {
-  fetch("http://localhost:3000/query/events", { method: "GET" })
-    .then((res) => res.json())
-    .then((json) => {
-      res.render("dashboard/evaluar_equipo.html", {
-        current_page: "Dashboard Jurado",
-        events: json,
-      });
-    });
-});
-
 router.get("/dashboard/coordinador/modificar_equipo", async function (req, res) {
   const response = await fetch("http://localhost:3000/query/get_all_teams", {
     method: "GET",
@@ -282,15 +271,13 @@ router.get("/dashboard/jurado", function (req, res) {
   });
 });
 
-router.get("/dashboard/jurado/evaluar_equipo", function (req, res) {
+router.get("/dashboard/jurado/evaluar_equipo", async function (req, res) {
   session = req.session;
   console.log(session);
-  fetch(
-    "http://localhost:3000/query/get_jury_cat_teams?userid=" + session.userid,
-    { method: "GET" }
-  )
-   .then((res) => res.json())
-   .then((result) => {
+
+  const rel = await fetch("http://localhost:3000/query/get_jury_cat_teams?userid=" + session.userid, { method: "GET" })
+    const result = await rel.json();
+
       const conv = function (text) {
         return text.replaceAll(" ", "-");
       };
@@ -336,7 +323,6 @@ router.get("/dashboard/jurado/evaluar_equipo", function (req, res) {
         message: req.flash("info"),
         messagetype: req.flash("type"),
       });
-    });
 });
 
 router.get("/dashboard/publico", function (req, res) {
