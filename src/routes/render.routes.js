@@ -285,7 +285,6 @@ router.get("/dashboard/jurado/evaluar_equipo", async function (req, res) {
       const inv_conv = function (text) {
         return text.replaceAll("-", " ");
       };
-      console.log(`Chinga tu madre Oaxaca ${result}`)
       var dict = [];
 
       for (var i = 0; i < result.length; i++) {
