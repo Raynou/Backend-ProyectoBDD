@@ -55,10 +55,13 @@ router.post("/query/login", async function (req, res) {
 
 router.get("/query/evaluations", async function (req, res) {
   console.log(req.query);
-  const evento = req.query.evento;
-  const cat = req.query.categoria_evento;
-
-  res.send(await query.evaluations(evento, cat));
+  try{
+    const evento = req.query.evento;
+    const cat = req.query.categoria_evento;
+    res.send(await query.evaluations(evento, cat));
+  }catch{
+    // TODO: dar feedback de que el usuario esta introduciendo erróneamente datos
+  }
 });
 
 router.get("/query/get_jury_cat_teams", async function (req, res) {
