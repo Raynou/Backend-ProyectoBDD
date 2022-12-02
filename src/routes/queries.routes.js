@@ -189,6 +189,13 @@ router.post("/query/assign_team", async (req, res) => {
 router.post("/query/set_calif", (req, res) => {
   const data = req.body;
 
+    if (!req.body.evento_eva) {
+  req.flash("info", "Selecciona un equipo a evaluar");
+  req.flash("type", "info");
+  res.redirect("/dashboard/jurado/evaluar_equipo");
+	return;
+    }
+
   const catpro = {
     equipo: data.equipo_eva,
     evento: data.evento_eva,
