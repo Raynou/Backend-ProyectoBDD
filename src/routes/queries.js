@@ -202,10 +202,9 @@ export async function putCalif(catpro, catdis, catcons, jurado){
 		replacements: [catcons.equipo, cod_evento, catcons.sub1, catcons.sub2]
 	})
 
-	const res = await sequelize.query('call update_project_jury(?, ?, ?);', {
+	 sequelize.query('call update_project_jury(?, ?, ?);', {
 		replacements: [catcons.equipo, cod_evento, jurado]
 	})
-    console.log(res)
 }
 
 export async function getJudge(){
