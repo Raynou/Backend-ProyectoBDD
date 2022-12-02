@@ -352,6 +352,16 @@ router.post("/dashboard/publico/ver_resultados", async function (req, res) {
   });
   const events_data = await events_response.json();
 
+    if (!req.body.evento || !req.body.categoria_evento ) {
+  res.render("dashboard/ver_resultados.html", {
+    current_page: "Dashboard Publico",
+    events: events_data,
+    message: req.flash("info"),
+    messagetype: req.flash("type"),
+  });
+	return
+    }
+
   const evals_response = await fetch(
     "http://localhost:3000/query/evaluations?evento=" +
       req.body.evento +
