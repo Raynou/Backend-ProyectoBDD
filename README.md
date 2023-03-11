@@ -1,3 +1,8 @@
+### Requisitos
+
+1. MySQL
+2. NodeJS
+
 ### Configurar el proyecto.
 
 1. Ejecute los archivos db/schema.sql y db/store_procedures.sql para construir el esquema de base de datos con sus procedimientos almacenados
